@@ -11,18 +11,21 @@ function app(window) {
 
     // set default configurations
     let configurations = {
-        someDefaultConfiguration: false
+        style: {
+            bottom: '40px',
+            right: '40px',
+        },
     };
 
     // all methods that were called till now and stored in queue
-    // needs to be called now 
-    let globalObject = window[window['JS-Widget']];
+    // needs to be called now
+    let globalObject = window[window['wp-contacts-Widget']];
     let queue = globalObject.q;
     if (queue) {
         for (var i = 0; i < queue.length; i++) {
             if (queue[i][0].toLowerCase() == 'init') {
                 configurations = extendObject(configurations, queue[i][1]);
-                console.log('JS-Widget started', configurations);
+                show(configurations)
             }
             else
                 apiHandler(queue[i][0], queue[i][1]);

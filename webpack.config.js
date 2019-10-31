@@ -20,6 +20,14 @@ module.exports = (env) => {
             : [new webpack.optimize.UglifyJsPlugin()],
         module: {
             rules: [
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'sass-loader',
+                    ],
+                },
                 { test: /\.html$/i, use: 'html-loader' },
                 { test: /\.css$/i, use: ['style-loader', 'css-loader' + (isDevBuild ? '' : '?minimize')] },
                 {
